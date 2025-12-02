@@ -67,9 +67,10 @@ sentiment.db
 ## 6. Cấu trúc dự án
 Final_Project/
 
-venv/                  # Môi trường ảo (không nên gửi kèm)
-app.py                 # Flask server, routing, database logic
-nlp_model.py           # Logic gọi mô hình PhoBERT (Transformers Pipeline)
-sentiment.db           # Database SQLite (tự động tạo)
-templates/
-          index.html         # Giao diện hiển thị bằng Jinja2
+Final_Project/ │ 
+├── venv/ # Môi trường ảo 
+├── app.py # Core: Thiết lập Flask server, Routing, Logic Database 
+├── nlp_model.py # Core: Hàm chứa logic gọi model AI (Transformer Pipeline) 
+├── sentiment.db # Cơ sở dữ liệu SQLite (Tự động tạo) 
+└── templates/ # Giao diện người dùng 
+              └── index.html # Template chính sử dụng Jinja2
