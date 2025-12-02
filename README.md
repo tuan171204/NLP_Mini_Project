@@ -1,58 +1,75 @@
-Trợ Lý Phân Loại Cảm Xúc Tiếng Việt (Vietnamese Sentiment Assistant)
-Mô Tả Dự Án
-Đây là đồ án môn học nhằm xây dựng một ứng dụng phân loại cảm xúc từ văn bản tiếng Việt sử dụng kiến trúc mô hình Transformer.
-Ứng dụng nhận vào một câu tiếng Việt bất kỳ, sau đó sử dụng mô hình AI được huấn luyện sẵn (Pre-trained Model) để phân loại cảm xúc của câu thành 3 nhãn chính: Tích cực (POSITIVE), Trung tính (NEUTRAL), hoặc Tiêu cực (NEGATIVE).
+# Trợ Lý Phân Loại Cảm Xúc Tiếng Việt
+Vietnamese Sentiment Assistant – Flask + PhoBERT + Transformers
+## 1. Giới thiệu
+Dự án xây dựng một hệ thống phân loại cảm xúc tiếng Việt dựa trên mô hình Transformer hiện đại.
+Ứng dụng nhận vào một câu tiếng Việt và phân loại thành ba nhãn:
 
-Tính năng chính
-Phân loại cảm xúc (Sentiment Analysis): Xử lý văn bản tiếng Việt để xác định cảm xúc.
-Sử dụng AI tiên tiến: Triển khai mô hình PhoBERT (một phiên bản Transformer tối ưu cho tiếng Việt) thông qua thư viện Hugging Face Transformers.
-Giao diện Web: Xây dựng bằng framework Flask (Python).
-Lưu trữ lịch sử: Lưu lại tất cả các lần phân loại vào cơ sở dữ liệu SQLite cục bộ.
+POSITIVE (Tích cực)
+NEUTRAL (Trung tính)
+NEGATIVE (Tiêu cực)
 
-Hướng Dẫn Cài Đặt và Chạy Ứng Dụng
-Ứng dụng được xây dựng hoàn toàn bằng Python và yêu cầu các thư viện tiêu chuẩn trong môi trường ảo (Virtual Environment - venv).
+Hệ thống sử dụng:
 
-# 1. Yêu cầu hệ thống & cài đặt
-Python: Phiên bản 3.8 trở lên.
-Hệ điều hành: Windows, macOS, hoặc Linux.
+PhoBERT (Pre-trained Transformer cho tiếng Việt)
+Thư viện HuggingFace Transformers
+Flask Framework
+Cơ sở dữ liệu SQLite để lưu lịch sử
 
-Tạo thư mục trống để chứa repository, dùng git bash/github desktop:
->> git clone 
+## 2. Tính năng chính
 
-# 2. Thiết lập Môi trường Ảo (Virtual Environment)
-Nnên tạo môi trường ảo để quản lý các thư viện dự án một cách cô lập.
-Mở Terminal (hoặc Command Prompt) trong thư mục gốc của dự án
-# a. Tạo môi trường ảo (tên là venv)
->> python -m venv venv
+Phân loại cảm xúc văn bản tiếng Việt bằng mô hình AI.
 
-# b. Kích hoạt môi trường ảo
-# Trên Windows:
->> .\venv\Scripts\activate
-# Trên macOS/Linux:
->> source venv/bin/activate
+Sử dụng mô hình PhoBERT được huấn luyện trước.
 
-(Sau khi kích hoạt, sẽ thấy (venv) xuất hiện ở đầu dòng lệnh).
+Giao diện web chạy trên Flask.
 
-# 3. Cài đặt các Thư viện Phụ thuộc
-Sử dụng pip để cài đặt tất cả các thư viện cần thiết:
->> pip install -r requirements.txt
+Lưu lại lịch sử phân loại vào SQLite.
 
-Lưu ý: Lần đầu tiên chạy lệnh này, thư viện torch sẽ được cài đặt và model Transformer (PhoBERT) sẽ được tải về máy (khoảng 300-500 MB).
-Quá trình này có thể mất vài phút tùy thuộc vào tốc độ mạng.
+Tự động tải và cache mô hình khi chạy lần đầu.
 
-# 4. Chạy Ứng DụngSau khi cài đặt thành công, chạy file app.py:
->> python app.py
+## 3. Yêu cầu hệ thống
+Thành phần	Phiên bản
+Python	3.8+
+Hệ điều hành	Windows / macOS / Linux
+Kết nối Internet	Cần cho lần chạy đầu để tải model
 
-# 5. Truy cập Ứng Dụng
-Mở trình duyệt web của bạn.Truy cập vào địa chỉ: http://127.0.0.1:5000/
-Ứng dụng sẽ tự động khởi tạo cơ sở dữ liệu sentiment.db và bắt đầu lắng nghe yêu cầu.
+## 4. Hướng dẫn cài đặt
+### 4.1. Tạo môi trường ảo (Virtual Environment)
+Trong thư mục dự án:
+> python -m venv venv
 
-Cấu Trúc Dự ÁnCấu trúc file đã được phân chia rõ ràng theo các lớp chức năng:
+### 4.2. Kích hoạt môi trường ảo
+Windows:
+> .\venv\Scripts\activate
+
+
+macOS / Linux:
+> source venv/bin/activate
+
+### 4.3. Cài đặt các thư viện cần thiết
+> pip install -r requirements.txt
+
+
+### Lưu ý:
+Lần đầu tiên chạy lệnh trên, hệ thống sẽ tự động tải mô hình PhoBERT (kích thước 300–500 MB). Việc này có thể mất một vài phút tùy tốc độ mạng.
+
+### 4.4. Chạy ứng dụng Flask
+> python app.py
+
+## 5. Truy cập ứng dụng
+
+Truy cập trình duyệt tại địa chỉ: [http://127.0.0.1:5000/]
+
+
+Hệ thống sẽ tự động tạo tệp cơ sở dữ liệu:
+sentiment.db
+
+## 6. Cấu trúc dự án
 Final_Project/
 │
-├── venv/                  # Môi trường ảo
-├── app.py                 # Core: Thiết lập Flask server, Routing, Logic Database
-├── nlp_model.py           # Core: Hàm chứa logic gọi model AI (Transformer Pipeline)
-├── sentiment.db           # Cơ sở dữ liệu SQLite (Tự động tạo)
-└── templates/             # Giao diện người dùng
-    └── index.html         # Template chính sử dụng Jinja2
+├── venv/                  # Môi trường ảo (không nên gửi kèm)
+├── app.py                 # Flask server, routing, database logic
+├── nlp_model.py           # Logic gọi mô hình PhoBERT (Transformers Pipeline)
+├── sentiment.db           # Database SQLite (tự động tạo)
+└── templates/
+    └── index.html         # Giao diện hiển thị bằng Jinja2
